@@ -1,0 +1,32 @@
+{% extends 'basic.html' %}
+ {% load static %}
+ {% block title %}
+ User Login
+{%endblock title %} {% block body %}
+<section class="mt-5 container">
+  <h3 class="font-weight-bold">NEW MESSAGES({{unread}})</h3>
+
+  <ul class="list-group list-group-flush p-5">
+    {% for m in messageRequests %}
+    <div class="">
+        {% if m.is_read == False %}
+            <li class="list-group-item font-weight-bold">
+        {% else %}
+            <li class="list-group-item text-muted disabled">
+        {% endif %}
+
+        <a class="text-dark" href="{% url 'viewMessage' m.id %}">
+          <div class="row">
+            <div class="col-md-4"><span>{{m.name}}</span></div>
+            <div class="col-md-4 "><span>{{m.subject}}</span></div>
+            <div class="col-md-4 d-flex justify-content-end">
+              <span>{{m.created}}</span>
+            </div>
+          </div>
+        </a>
+      </li>
+    </div>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock body %}

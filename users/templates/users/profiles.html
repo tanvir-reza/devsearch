@@ -1,0 +1,64 @@
+{% extends 'basic.html' %} 
+{% block title %} Users On this Website {% endblock title %}
+ {% block body %}
+
+<div class="d-flex text-center flex-column bg-secondary h-50">
+  <div class="container pb-5 pt-2">
+    <h1 class="text-white">SEARCH FOR <strong>DEVELOPERS</strong></h1>
+    <br />
+    <form class="form-inline justify-content-center" method="GET">
+      <input
+        class="form-control mr-sm-2 w-50"
+        type="text"
+        placeholder="Search For Developer Name"
+        aria-label="Search"
+        name="s_q"
+      />
+      <button class="btn btn-primary color-warning my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="container mt-5 p-2">
+  {% if not users %}
+    <h1 class="text-center text-danger">User Not Found !!</div>
+    {% endif %}
+  <div class="row">
+    
+    {% for user in users %}
+    <div class="col-sm-4">
+      <div class="card w-100">
+        <div class="card-body">
+          <a href="{% url 'user-profile' user.id %}">
+            <div class="d-flex justify-content-start">
+              <div class="mt-auto d-flex">
+                <img
+                  class="rounded w-25 h-25"
+                  src="{{user.profile_img.url}}"
+                  alt=""
+                />
+                <div class="w-100 p-2">
+                  <h3 class="text-dark">{{user.first_name}}</h3>
+                  <h5 class="text-dark" class="card-text text-justify">
+                    {{user.occupation}}
+                  </h5>
+                </div>
+              </div>
+            </div>
+            <p class="mb-0">{{user.bio}}</p>
+          </a>
+        </div>
+        <div class="d-flex ms-2">
+          {% for skill in user.skill_set.all %}
+          <p class="btn btn-success m-1">{{skill}}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock body %}

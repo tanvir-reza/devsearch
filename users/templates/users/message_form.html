@@ -1,0 +1,46 @@
+{% extends 'basic.html' %} {% load static %} {% block title %} User Login
+{%endblock title %} {% block body %}
+<section class="m-5 p-5 container d-flex justify-content-center">
+  <div class="card w-75">
+    <div class="w-25">
+      <a class="btn text-warning" href="{% url 'user-profile' recipient.id %}"
+        ><i class="fa-solid fa-backward"></i>
+      </a>
+    </div>
+    <div class="content p-3">
+      <form class="form" method="post">
+        {% csrf_token %} {% if request.user.is_authenticated == False %}
+        <div class="my-2">
+          <label for="">{{form.name.label}}</label>
+          {{form.name}}
+        </div>
+        <div class="my-2">
+          <label for="">{{form.email.label}}</label>
+          {{form.email}}
+        </div>
+        <div class="my-2">
+          <label for="">{{form.subject.label}}</label>
+          {{form.subject}}
+        </div>
+        <div class="my-2">
+          <label for="">{{form.body.label}}</label>
+          {{form.body}}
+        </div>
+
+        {% else %}
+
+        <div class="my-2">
+          <label for="">{{form.subject.label}}</label>
+          {{form.subject}}
+        </div>
+        <div class="my-2">
+          <label for="">{{form.body.label}}</label>
+          {{form.body}}
+        </div>
+        {% endif %}
+        <button class="btn btn-primary">SUBMIT</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock body %}

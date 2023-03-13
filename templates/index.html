@@ -1,0 +1,50 @@
+{% extends 'basic.html' %}
+
+{% block title %}DevSearch{% endblock title %}
+
+{% block body %}
+
+{% load static %}
+
+<!-- Body  -->
+
+
+<div class="container d-flex text-center flex-column mt-5">
+  <h1 class="text-white ">Connect with <strong>DEVELOPERS</strong> <br> <span>From Around The World !</span></h1><br>
+  <form class="form-inline justify-content-center">
+    <input class="form-control mr-sm-2 w-50" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-info color-white my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</div>
+
+
+<div class="container mt-5 p-2">
+  <div class="row">
+    {% for user in  users%}
+  <div class="col-sm-4 ">
+      <div class="card w-100" >
+  <div class="card-body">
+    <div class="d-flex justify-content-start">
+      <img class="rounded w-25 h-25" src="{% static 'images/avatar.jpg' %}" alt="">
+      <div class="mt-auto">
+        <h4 class="card-title text-justify ps-3">{{user.first_name }}</h4>
+        <p>Developer</p>
+      </div>
+    </div>
+    <p class="card-text text-justify">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="btn btn-success">Python</p>
+    <p class="btn btn-success">Java</p>
+  </div>
+</div>
+    </div>
+
+{% endfor %}
+  </div>
+
+</div>
+
+
+<!-- Body -->
+
+
+{% endblock body %}

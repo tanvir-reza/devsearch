@@ -1,0 +1,80 @@
+{% extends 'basic.html' %}
+ {% block title %} 
+ {{user.first_name}} 
+ {% endblock title %} 
+ {% block body %}
+<div class="container mt-5">
+  <div class="row">
+     <div class="col-md-4 ">
+        <div style="background-color: #fcf7f3 !important" class="card w-100 h-auto align-items-center p-5 bg">
+            <img class="card-img-top rounded-circle w-75" src="{{user.profile_img.url}}" alt="Card image cap">
+            <div class="card-body text-center">
+                <h3 class="name">{{user.first_name}} {{user.last_name}}</h3>
+              <p class="card-text">Mirpur, Dhaka</p>
+              {% if user.github_link %}
+               <a class="p-3" target="_blank" href="{{user.github_link}}"><i class="fa-brands fa-github"></i></a>
+              {% endif %}
+              {% if user.facebook_link %}
+              <a class="p-3" target="_blank" href="{{user.facebook_link}}"><i class="fa-brands fa-facebook"></i></a>
+              {% endif %}
+             {% if user.linkedin_link %}
+              <a class="p-3" target="_blank" href="{{user.linkedin_link}}"><i class="fa-brands fa-linkedin"></i></a>
+             {% endif %} 
+            </div>
+            <a href="{% url 'sendMessage' pro %}" class="btn btn-primary">Send Message</a>
+          </div>
+      </div>
+    <div class="col-md-8 ps-5">
+        <h1>About Me</h1>
+     <p style="font-family: cursive !important" class="text-justify p-3">{{user.bio}}</p>
+     <div class="d-flex bd-highlight mt-2 p-t2">
+        <div class="w-100 bd-highlight "><h1>Skills</h1></div>
+      </div>
+        <div class="p-3">
+            {% for skill in topSkills %}
+            <h3>{{skill.name}}</h3>
+            <div class="d-flex bd-highlight">
+                <div class="p-2 w-100 bd-highlight"><p>{{skill.description}}</p></div>
+            </div>
+            {% endfor %}
+            </div>
+
+        <div class="w-100 bd-highlight "><h1>Other Skills</h1></div>
+            <div class="p-3">
+                {% for skill in otherSkills %}
+            <button class="btn btn-secondary">{{skill.name}}</button>
+            {% endfor %}
+            </div>
+      <hr>
+      <div class="d-flex bd-highlight my-5">
+        <div class="p-2 w-100 bd-highlight"><h1>Projects</h1></div>
+      </div>
+      {% for project in projects %}
+      <div class="card mb-5">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{project.project_img.url}}" class="img-fluid rounded-start" >
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <div class="my-4">
+                        <div>
+                           <h3>{{project.title}}</h3>
+                            <div class="d-flex bd-highlight">
+                                <div class="p-2 w-100 bd-highlight"><p>
+                                  {{project.description}}
+                                </p>
+                              </div>
+                        </div>
+                      </div>
+                    </div>
+        </div>
+      </div>
+      {% endfor %}
+        </div>
+        </div>
+       </div>
+        </div>  
+    </div>
+    
+{% endblock body %}

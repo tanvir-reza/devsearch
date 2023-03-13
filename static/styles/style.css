@@ -1,0 +1,20 @@
+.helptext {
+  display: none !important;
+}
+body{
+      font-family: inherit !important;
+}
+#logo {
+  width: 177px !important;
+  height: 56px !important;
+}
+#bg {
+  background-image: url("http://mdbootstrap.com/img/Photos/Others/images/91.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+a:link {
+  text-decoration: none !important;
+}
+

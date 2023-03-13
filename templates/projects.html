@@ -1,0 +1,69 @@
+{% extends 'basic.html' %}
+
+{% block title %}DevSearch{% endblock title %}
+{% block body %}
+
+
+<div class="d-flex text-center flex-column bg-secondary h-50">
+  <div class="container pb-5 pt-2">
+    <h1 class="text-white">SEARCH FOR <strong>PROJECTS</strong></h1>
+    <br />
+    <form class="form-inline justify-content-center" method="GET">
+      <input
+        class="form-control mr-sm-2 w-50"
+        type="text"
+        placeholder="Search For Project"
+        aria-label="Search"
+        name="project-search"
+      />
+      <button class="btn btn-primary color-warning my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+</div>
+
+
+<div class="container mt-5 p-2">
+  {% if not projects %}
+    <h1 class="text-center text-danger">Project Not Found !!</div>
+      
+  {% endif %}
+  <div class="row">
+  <div class="row">
+    {% for project in  projects%}
+  <div class="col-sm-4 ">
+      <div class="card w-100" >
+  <div class="card-body">
+    <div class="d-flex justify-content-start">
+      <img class="rounded w-25 h-25" src="{{project.project_img.url}}" alt="">
+      <div class="mt-auto">
+        <a class="text-dark" href='{% url 'project' project.id %}'><h4 class="card-title text-justify ps-3">{{project.title}}</h4></a>
+
+        <a href="{% url 'user-profile' project.owner.id %}">By {{project.owner}}</a>
+
+        
+      </div>
+    </div>
+    <p class="card-text text-justify">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="btn btn-success">Python</p>
+    <p class="btn btn-success">Java</p>
+  </div>
+</div>
+    </div>
+
+{% endfor %}
+  </div>
+
+</div>
+
+
+<!-- Body -->
+
+
+{% endblock body %}
+
+
+
+
+

@@ -1,0 +1,18 @@
+{% extends 'basic.html' %} {% load static %} {% block title %} User Login
+{%endblock title %} {% block body %}
+<section class="m-5 p-5 container d-flex justify-content-center">
+  <div class="card w-75">
+    <div class="w-25">
+      <a class="btn text-warning" href="{% url 'inbox' %}"
+        ><i class="fa-solid fa-backward"></i>
+      </a>
+    </div>
+    <div class="content p-3">
+      <h3 class="font-weight-bold">{{message.subject}}</h3>
+      <a class="text-info" href=""><p>{{message.sender}}</p></a>
+      <a class="text-dark" href=""><p>{{message.created}}</p></a>
+      <p>{{message.body|linebreaksbr}}</p>
+    </div>
+  </div>
+</section>
+{% endblock body %}
